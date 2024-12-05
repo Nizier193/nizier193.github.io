@@ -33,10 +33,10 @@ nav {
 .nav-content {
     max-width: 1200px;
     margin: 0 auto;
+    padding: 0 20px;
     display: flex;
     justify-content: space-between;
     align-items: center;
-    padding: 20px;
 }
 
 .nav-logo {
@@ -81,7 +81,15 @@ nav a:hover {
     align-items: center;
     justify-content: center;
     text-align: center;
-    background: linear-gradient(45deg, #f6f6f6, #ffffff);
+    background: white;
+    padding-top: 60px;
+}
+
+.hero-content {
+    width: 100%;
+    max-width: 1200px;
+    margin: 0 auto;
+    padding: 0 20px;
 }
 
 .profile-images {
@@ -589,4 +597,82 @@ nav a:hover {
         padding: 4px 10px;
         font-size: 0.9em;
     }
+}
+
+/* Add hamburger menu for mobile */
+.nav-toggle {
+    display: none;
+    font-size: 1.5rem;
+    cursor: pointer;
+}
+
+/* Responsive adjustments */
+@media screen and (max-width: 768px) {
+    .nav-toggle {
+        display: block;
+    }
+
+    .nav-content ul {
+        display: none;
+        position: absolute;
+        top: 60px;
+        left: 0;
+        right: 0;
+        background: #fff;
+        flex-direction: column;
+        text-align: center;
+        box-shadow: 0 2px 5px rgba(0,0,0,0.1);
+    }
+
+    .nav-content ul.active {
+        display: flex;
+    }
+
+    .nav-content ul li {
+        margin: 15px 0;
+    }
+
+    /* Project grid adjustments */
+    .project-grid {
+        grid-template-columns: 1fr;
+        padding: 0 20px;
+    }
+
+    /* Education cards */
+    .education-card {
+        margin: 0 20px;
+    }
+
+    /* Profile images */
+    .profile-images {
+        padding: 0 20px;
+    }
+
+    .profile-img.main {
+        width: 200px;
+        height: 200px;
+    }
+
+    .profile-img-small {
+        width: 100px;
+        height: 100px;
+    }
+
+    /* Stats adjustment */
+    .stats {
+        flex-direction: column;
+        gap: 20px;
+    }
+
+    /* Timeline adjustment */
+    .timeline-container {
+        padding: 0 20px;
+    }
+}
+
+/* General responsive container */
+section {
+    padding: 40px 20px;
+    max-width: 1200px;
+    margin: 0 auto;
 } 
