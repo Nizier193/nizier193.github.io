@@ -1,344 +1,45 @@
 <!DOCTYPE html>
-<html lang="en">
+<html lang="ru">
 <head>
     <meta charset="UTF-8">
-    <meta name="viewport" content="width=device-width, initial-scale=1.0, maximum-scale=1.0, user-scalable=no">
-    <title>Nikita Borisov - Portfolio</title>
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Никита Борисов | Nizier193 - Интерактивная карта знаний</title>
     <link rel="stylesheet" href="styles.css">
-    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.0.0/css/all.min.css">
+    
+    <!-- CDN библиотеки -->
+    <script src="https://d3js.org/d3.v7.min.js"></script>
+    <script src="https://cdn.jsdelivr.net/npm/marked/marked.min.js"></script>
 </head>
 <body>
-    <nav>
-        <div class="nav-content">
-            <span class="logo">Nikita Borisov</span>
-            <div class="nav-toggle">
-                <i class="fas fa-bars"></i>
-            </div>
-            <ul>
-                <li><a href="#home">Home</a></li>
-                <li><a href="#about">About</a></li>
-                <li><a href="#education">Education</a></li>
-                <li><a href="#projects">Projects</a></li>
-                <li><a href="#contact">Contact</a></li>
-            </ul>
-        </div>
-    </nav>
+    <header class="header">
+        <h1>Никита Борисов | Nizier193</h1>
+        <p>Интерактивная карта знаний и навыков</p>
+    </header>
 
-    <section id="home" class="hero">
-        <div class="hero-content">
-            <div class="profile-images">
-                <img src="images/photo-2.jpg" alt="Avatar 1" class="profile-img-small left">
-                <img src="images/photo-4.jpg" alt="Nikita Borisov" class="profile-img main">
-                <img src="images/photo-6.jpg" alt="Avatar 3" class="profile-img-small right">
-            </div>
-            <h1>Nikita Borisov</h1>
-            <p class="tagline">Young Developer from Saint-Petersburg</p>
-            <div class="scroll-indicator">
-                <span>Scroll Down</span>
-                <i class="fas fa-chevron-down"></i>
+    <main class="main-container">
+        <div class="graph-container">
+            <svg id="graph-svg"></svg>
+            <div class="graph-controls">
+                <button id="reset-zoom" class="control-btn">🔍 Сбросить масштаб</button>
+                <button id="center-graph" class="control-btn">🎯 Центрировать</button>
             </div>
         </div>
-    </section>
-
-    <section id="about" class="about">
-        <h2>About Me</h2>
-        <div class="about-content">
-            <div class="about-text">
-                <p>Hey! I'm a 17-year-old developer based in Saint-Petersburg, Russia. I'm passionate about creating innovative solutions and learning new technologies.</p>
-                <div class="stats">
-                    <div class="stat-item">
-                        <span class="stat-number">17</span>
-                        <span class="stat-label">Years Old</span>
-                    </div>
-                    <div class="stat-item">
-                        <span class="stat-number">SPB</span>
-                        <span class="stat-label">Based in</span>
-                    </div>
-                    <div class="stat-item">
-                        <span class="stat-number">4/6</span>
-                        <span class="stat-label">Journey Step</span>
-                    </div>
-                </div>
-                
-                <div class="timeline">
-                    <div class="timeline-container">
-                        <div class="timeline-item">
-                            <div class="timeline-content">
-                                <h4>First Steps</h4>
-                                <p>Discovered Programming</p>
-                                <span class="date">2021</span>
-                            </div>
-                        </div>
-                        <div class="timeline-item">
-                            <div class="timeline-content">
-                                <h4>Python Journey</h4>
-                                <p>Mastered Python Basics</p>
-                                <span class="date">2022</span>
-                            </div>
-                        </div>
-                        <div class="timeline-item">
-                            <div class="timeline-content">
-                                <h4>ML Explorer</h4>
-                                <p>Dove into AI & ML</p>
-                                <span class="date">2023</span>
-                            </div>
-                        </div>
-                        <div class="timeline-item active">
-                            <div class="timeline-content glowing">
-                                <h4>Career Decision</h4>
-                                <p>Committed to Tech</p>
-                                <span class="date">2024</span>
-                            </div>
-                        </div>
-                        <div class="timeline-item future">
-                            <div class="timeline-content">
-                                <h4>Dream University</h4>
-                                <p>Next Big Step</p>
-                                <span class="date">2024</span>
-                            </div>
-                        </div>
-                        <div class="timeline-item future">
-                            <div class="timeline-content">
-                                <h4>To be continued...</h4>
-                                <p>More adventures await!</p>
-                                <span class="date">→</span>
-                            </div>
-                        </div>
-                    </div>
-                </div>
+        
+        <aside class="sidebar" id="sidebar">
+            <div class="sidebar-header">
+                <h3>Информация о узле</h3>
+                <button class="close-btn" id="close-sidebar">&times;</button>
             </div>
-        </div>
-    </section>
-
-    <section id="education" class="education">
-        <h2>Education</h2>
-        <div class="education-content">
-            <!-- HSE Course -->
-            <div class="education-card">
-                <div class="timeline-dot">5</div>
-                <div class="education-details">
-                    <h3>HSE ML School (SPb)</h3>
-                    <p class="education-period">October 2024 - Present</p>
-                    <p class="education-description">Currently studying Machine Learning</p>
-                </div>
+            <div class="sidebar-content" id="sidebar-content">
+                <p class="placeholder">Нажмите на узел графа, чтобы увидеть подробную информацию</p>
             </div>
+        </aside>
+    </main>
 
-            <!-- AI-Arrow Bootcamp -->
-            <div class="education-card">
-                <div class="timeline-dot">4</div>
-                <div class="education-details">
-                    <h3>AI-Arrow Bootcamp (Senior Track)</h3>
-                    <p class="education-period">July 2024 - August 2024</p>
-                    <p class="education-description">Participated in hackathon-focused ML bootcamp</p>
-                </div>
-            </div>
-
-            <!-- Yandex DS -->
-            <div class="education-card">
-                <div class="timeline-dot">3</div>
-                <div class="education-details">
-                    <h3>Yandex Lyceum: Data Science</h3>
-                    <p class="education-period">January 2024 - April 2024</p>
-                    <p class="education-badge">With Honors</p>
-                    <details class="education-dropdown">
-                        <summary>Skills Acquired</summary>
-                        <ul>
-                            <li>Pandas</li>
-                            <li>Scipy</li>
-                        </ul>
-                    </details>
-                </div>
-            </div>
-
-            <!-- Yandex ML -->
-            <div class="education-card">
-                <div class="timeline-dot">2</div>
-                <div class="education-details">
-                    <h3>Yandex Lyceum: Machine Learning</h3>
-                    <p class="education-period">September 2023 - December 2023</p>
-                    <p class="education-badge">With Honors</p>
-                    <details class="education-dropdown">
-                        <summary>Skills Acquired</summary>
-                        <ul>
-                            <li>CNN</li>
-                            <li>YOLO</li>
-                            <li>Classic ML</li>
-                            <li>Numpy</li>
-                            <li>Matplotlib</li>
-                        </ul>
-                    </details>
-                    <details class="education-dropdown">
-                        <summary>Projects</summary>
-                        <ul>
-                            <li>CT Scan Classification (CNN, UNet, ResNet-52)</li>
-                        </ul>
-                    </details>
-                </div>
-            </div>
-
-            <!-- Python Course -->
-            <div class="education-card">
-                <div class="timeline-dot">1</div>
-                <div class="education-details">
-                    <h3>Python Programming Course: "Code of the Future"</h3>
-                    <p class="education-period">September 2022 - August 2023</p>
-                    <p class="education-badge">Top Student in Course</p>
-                    <details class="education-dropdown">
-                        <summary>Skills Acquired</summary>
-                        <ul>
-                            <li>OOP</li>
-                            <li>FastAPI</li>
-                            <li>PyTelegramBotAPI</li>
-                            <li>PyGame</li>
-                        </ul>
-                    </details>
-                    <details class="education-dropdown">
-                        <summary>Course Projects</summary>
-                        <ul>
-                            <li>Calculators</li>
-                            <li>Web Parsers</li>
-                            <li>Full-featured Game with Chunking</li>
-                            <li>Social Network Prototype</li>
-                        </ul>
-                    </details>
-                </div>
-            </div>
-        </div>
-    </section>
-
-    <section id="projects" class="projects">
-        <h2>My Projects</h2>
-        <div class="project-grid">
-            
-            <!-- Viral Clip Maker Project -->
-            <div class="project-card">
-                <div class="project-content">
-                    <img src="projects/viral-clip-maker.jpg" alt="Viral Clip Maker Project">
-                    <div class="project-badge">2nd Place Winner</div>
-                    <h3>Viral Clip Maker: Automated Viral Video Creation</h3>
-                    <p class="project-date">September 28-30, 2024</p>
-                    <p>A service that automatically creates viral videos based on LLM and LLM Vision. Features automatic addition of beautiful subtitles, emojis, Fade-Out, and Fade-In. Won second place in the "Digital Breakthrough" Hackathon and was further developed.</p>
-                    <div class="tech-stack">
-                        <span class="tech-tag">OpenAI Vision</span>
-                        <span class="tech-tag">GPT-4</span>
-                        <span class="tech-tag">MoviePy</span>
-                        <span class="tech-tag">FastAPI</span>
-                        <span class="tech-tag">FFmpeg</span>
-                    </div>
-                </div>
-            </div>
-
-            <!-- Automatic Ticket Dispatching Project -->
-            <div class="project-card">
-                <div class="project-content">
-                    <img src="projects/automatic-ticket-disp.jpg" alt="Automatic Ticket Dispatching Project">
-                    <div class="project-badge">2nd Place Winner</div>
-                    <h3>Automatic Ticket Dispatching: Efficient Service</h3>
-                    <p class="project-date">August 18-25, 2024</p>
-                    <p>We developed a service that takes in "first line" operator data and outputs a well-formulated response and the class to which the message belongs. Features LLM OCR NLP integration.</p>
-                    <div class="tech-stack">
-                        <span class="tech-tag">GPT-3.5</span>
-                        <span class="tech-tag">spaCy</span>
-                        <span class="tech-tag">FastAPI</span>
-                        <span class="tech-tag">PostgreSQL</span>
-                        <span class="tech-tag">Docker</span>
-                    </div>
-                </div>
-            </div>
-            
-            <!-- AI-Arrow Project -->
-            <div class="project-card">
-                <div class="project-content">
-                    <img src="projects/ai-arrow.jpg" alt="AI-Arrow Project">
-                    <div class="project-badge">1st Place Winner</div>
-                    <h3>AI-Arrow: Augmentative LLM Environment</h3>
-                    <p class="project-date">November 12-14, 2024</p>
-                    <p>A D&D-style game environment where LLMs act as both players and Dungeon Master. Features dynamic image generation, music creation, and quest systems. Solo-developed project that won first place in the "Dungeons And Dragons" Hackathon.</p>
-                    <div class="tech-stack">
-                        <span class="tech-tag">LLMs</span>
-                        <span class="tech-tag">ImageGen</span>
-                        <span class="tech-tag">MusicGen</span>
-                        <span class="tech-tag">Streamlit</span>
-                        <span class="tech-tag">AsyncIO</span>
-                    </div>
-                </div>
-            </div>
-
-            <!-- Visual Support Generator -->
-            <div class="project-card">
-                <img src="projects/image_generator.jpg" alt="Visual Support Generator">
-                <div class="project-badge">4th Place</div>
-                <h3>Visual Support Generator</h3>
-                <p class="project-date">May 29 - June 1, 2024</p>
-                <p>A YandexART-powered solution for the Central Bank of Russia, generating contextual banner images for banking services. Developed during "Digital Breakthrough: Far Eastern Federal District" hackathon.</p>
-                <div class="tech-stack">
-                    <span class="tech-tag">YandexART</span>
-                    <span class="tech-tag">FastAPI</span>
-                    <span class="tech-tag">Docker</span>
-                    <span class="tech-tag">Tkinter</span>
-                    <span class="tech-tag">Raw HTML</span>
-                </div>
-            </div>
-
-            <!-- Plant Disease CNN -->
-            <div class="project-card">
-                <img src="projects/paper.jpg" alt="Plant Disease CNN">
-                <div class="project-badge">1st School Project</div>
-                <h3>CNN for Plant Disease Classification</h3>
-                <p class="project-date">2024</p>
-                <p>Comprehensive research project on CNN architectures for plant disease classification. Includes detailed experiments with image filtering techniques and architectural comparisons. 33-page scientific paper.</p>
-                <div class="tech-stack">
-                    <span class="tech-tag">PyTorch</span>
-                    <span class="tech-tag">OpenCV</span>
-                    <span class="tech-tag">ResNet</span>
-                    <span class="tech-tag">Pandas</span>
-                    <span class="tech-tag">Matplotlib</span>
-                    <span class="tech-tag">Scikit-learn</span>
-                </div>
-            </div>
-
-            <!-- Theta Game -->
-            <div class="project-card">
-                <img src="projects/theta-game.jpg" alt="Theta Game">
-                <h3>Theta Game</h3>
-                <p class="project-date">January - March 2024</p>
-                <p>First major game development project featuring Minecraft-style chunking system, particle effects, custom textures, and PyTMX world loading. Includes systematic file organization and comprehensive game mechanics.</p>
-                <div class="tech-stack">
-                    <span class="tech-tag">PyGame</span>
-                    <span class="tech-tag">PyTMX</span>
-                    <span class="tech-tag">NumPy</span>
-                    <span class="tech-tag">Tiled</span>
-                    <span class="tech-tag">JSON</span>
-                </div>
-            </div>
-        </div>
-    </section>
-
-    <section id="contact" class="contact">
-        <h2>Get in Touch</h2>
-        <div class="contact-content">
-            <div class="social-links">
-                <a href="https://t.me/Nizier193" class="social-btn">
-                    <i class="fab fa-telegram"></i>
-                    <span>Telegram</span>
-                </a>
-                <a href="https://github.com/Nizier193" class="social-btn">
-                    <i class="fab fa-github"></i>
-                    <span>GitHub</span>
-                </a>
-                <!-- Add more social links as needed -->
-            </div>
-        </div>
-    </section>
-
-    <footer>
-        <p>&copy; 2024 Nikita Borisov. All rights reserved.</p>
+    <footer class="footer">
+        <p>© 2024 Nizier193. Все права защищены</p>
     </footer>
 
-    <script>
-        document.querySelector('.nav-toggle').addEventListener('click', () => {
-            document.querySelector('.nav-content ul').classList.toggle('active');
-        });
-    </script>
+    <script src="script.js"></script>
 </body>
 </html> 
