@@ -43,9 +43,11 @@ class GraphBuilder {
     // Обработка узлов из модуля
     processNodes(moduleData, categoryName = null) {
         if (moduleData.nodes) {
-            // Центральный узел
-            moduleData.nodes.forEach(node => {
-                this.processNode(node, categoryName);
+            // Обработка узлов с учетом parent на уровне модуля
+            moduleData.nodes.forEach((node, index) => {
+                // Для первого узла (основной категории) используем parent из модуля
+                const parentId = (index === 0 && moduleData.parent) ? moduleData.parent : null;
+                this.processNode(node, categoryName, parentId);
             });
         }
     }
