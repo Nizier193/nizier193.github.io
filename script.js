@@ -176,11 +176,25 @@ function createGraph(data) {
         centerNode.fx = 0;
         centerNode.fy = 0;
     }
+
+    // Обновляем статистику
+    updateStats();
 }
 
 // Получение радиуса узла
 function getNodeRadius(d) {
     return d.size || 15;
+}
+
+// Обновление статистики
+function updateStats() {
+    const nodesCountElement = document.getElementById('nodes-count');
+    const linksCountElement = document.getElementById('links-count');
+    
+    if (nodesCountElement && linksCountElement) {
+        nodesCountElement.textContent = nodes ? nodes.length : 0;
+        linksCountElement.textContent = links ? links.length : 0;
+    }
 }
 
 // Обработчики перетаскивания

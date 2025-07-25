@@ -1,13 +1,15 @@
 {
   "config": {
     "center_node": "nikita",
-    "modules": [
-      "nodes/center.json",
-      "nodes/education.json", 
-      "nodes/projects.json",
-      "nodes/skills.json",
-      "nodes/teams.json"
-    ],
+          "modules": [
+        "nodes/center.json",
+        "nodes/education.json",
+        "nodes/projects.json",
+        "nodes/skills.json",
+        "nodes/teams.json",
+        "nodes/plans.json",
+        "nodes/easter_eggs.json"
+      ],
     "auto_generate_links": true,
     "link_rules": {
       "parent_child": true,
@@ -23,10 +25,12 @@
       "detail": 12
     },
     "color_schemes": {
-      "education": ["#e74c3c", "#c0392b", "#e74c3c", "#58d68d"],
-      "projects": ["#f39c12", "#e67e22", "#f39c12", "#9b59b6"],
-      "skills": ["#9b59b6", "#3776ab", "#ff6b35", "#4ecdc4"],
-      "teams": ["#1abc9c", "#e74c3c", "#c0392b", "#95a5a6"]
+              "education": ["#e74c3c", "#c0392b", "#e74c3c", "#58d68d"],
+        "projects": ["#f39c12", "#e67e22", "#f39c12", "#9b59b6"],
+        "skills": ["#9b59b6", "#3776ab", "#ff6b35", "#4ecdc4"],
+        "teams": ["#1abc9c", "#e74c3c", "#c0392b", "#95a5a6"],
+        "plans": ["#ff6b6b", "#ff8e8e", "#ffb3b3", "#ffd6d6"],
+        "easter_eggs": ["#ff69b4", "#ff91c7", "#ffb3da", "#ffd6ed"]
     }
   }
 } 
