@@ -11,6 +11,7 @@ class GraphBuilder {
         this.allLinks = [];
         this.colorSchemes = {};
         this.defaultSizes = {};
+        this.textsPath = './nodes/texts/';
     }
 
     // Загрузка конфигурации
@@ -25,6 +26,30 @@ class GraphBuilder {
             console.error('❌ Ошибка загрузки конфигурации:', error.message);
             process.exit(1);
         }
+    }
+
+    // Загрузка markdown текста для узла
+    loadMarkdownText(nodeId, categoryName) {
+        const possiblePaths = [
+            path.join(this.textsPath, categoryName, `${nodeId}.md`),
+            path.join(this.textsPath, `${nodeId}.md`)
+        ];
+
+        for (const mdPath of possiblePaths) {
+            try {
+                if (fs.existsSync(mdPath)) {
+                    const content = fs.readFileSync(mdPath, 'utf8');
+                    console.log(`📄 Загружен текст: ${mdPath}`);
+                    return content;
+                }
+            } catch (error) {
+                console.warn(`⚠️ Ошибка чтения ${mdPath}: ${error.message}`);
+            }
+        }
+
+        // Fallback - если markdown файл не найден
+        console.warn(`⚠️ Markdown файл не найден для узла: ${nodeId}`);
+        return null;
     }
 
     // Загрузка модуля
@@ -52,13 +77,16 @@ class GraphBuilder {
 
     // Обработка отдельного узла
     processNode(node, categoryName, parentId = null) {
+        // Загрузка markdown текста
+        const markdownText = this.loadMarkdownText(node.id, categoryName);
+        
         // Применение настроек по умолчанию
         const processedNode = {
             id: node.id,
             name: node.name,
             size: node.size || this.getDefaultSize(node.type || 'item'),
             color: node.color || this.getColor(categoryName, node.type),
-            text: node.text || `# ${node.name}\n\nОписание отсутствует.`,
+            text: markdownText || node.text || `# ${node.name}\n\nОписание отсутствует.`,
             ...node
         };
 
