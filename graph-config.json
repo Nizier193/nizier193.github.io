@@ -1,0 +1,32 @@
+{
+  "config": {
+    "center_node": "nikita",
+    "modules": [
+      "nodes/center.json",
+      "nodes/education.json", 
+      "nodes/projects.json",
+      "nodes/skills.json",
+      "nodes/teams.json"
+    ],
+    "auto_generate_links": true,
+    "link_rules": {
+      "parent_child": true,
+      "custom_links": []
+    }
+  },
+  "graph_settings": {
+    "default_sizes": {
+      "center": 50,
+      "category": 25,
+      "subcategory": 20,
+      "item": 15,
+      "detail": 12
+    },
+    "color_schemes": {
+      "education": ["#e74c3c", "#c0392b", "#e74c3c", "#58d68d"],
+      "projects": ["#f39c12", "#e67e22", "#f39c12", "#9b59b6"],
+      "skills": ["#9b59b6", "#3776ab", "#ff6b35", "#4ecdc4"],
+      "teams": ["#1abc9c", "#e74c3c", "#c0392b", "#95a5a6"]
+    }
+  }
+} 

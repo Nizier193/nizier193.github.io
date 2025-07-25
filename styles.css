@@ -95,7 +95,7 @@ body {
 }
 
 .control-btn:hover {
-    background: rgba(52, 152, 219, 0.7);
+    background: rgba(46, 138, 200, 0.7);
     transform: translateY(-2px);
     box-shadow: 0 4px 12px rgba(52, 152, 219, 0.3);
 }
